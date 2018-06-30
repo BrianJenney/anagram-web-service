@@ -4,7 +4,7 @@ const myCache = new NodeCache();
 const express = require("express");
 const app = express();
 
-app.listen(8000 || process.env.PORT);
+app.listen(process.env.PORT || 8000);
 
 app.get("/anagram", (req, res) => {
     res.send(anagram(req.query.word));
