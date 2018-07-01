@@ -60,6 +60,15 @@ function anagram(word) {
         }
     }
 
+    solutions = [];
+    const multiAnagram = longestAnagram(anagrams, sortedWord, 1000);
+
+    if (multiAnagram.length) {
+        anagrams = multiAnagram.reduce(function(a, b) {
+            return a.length > b.length ? a : b;
+        });
+    }
+
     return anagrams.length || twoWords.length
         ? { anagrams, twoWords, success: true }
         : { anagrams, twoWords, success: false };
@@ -103,6 +112,47 @@ function wordSorter(word) {
         .split("")
         .sort()
         .join("");
+}
+
+let solutions = [];
+
+function longestAnagram(words, target, iterations, partial) {
+    let s, n, remaining;
+
+    if (iterations < 2) {
+        return;
+    }
+
+    partial = partial || [];
+
+    s = partial.reduce(function(a, b) {
+        return a + b.length;
+    }, 0);
+
+    if (s === target.length) {
+        let sortedWord = partial
+            .join("")
+            .split("")
+            .sort()
+            .join("");
+
+        if (sortedWord === target) {
+            solutions.push(partial);
+        }
+    }
+
+    if (s >= target.length) {
+        return;
+    }
+
+    for (let i = 0; i < words.length; i++) {
+        n = words[i];
+        remaining = words.slice(i + 1);
+        iterations--;
+        longestAnagram(remaining, target, iterations, partial.concat([n]));
+    }
+
+    return solutions;
 }
 
 module.exports = app;

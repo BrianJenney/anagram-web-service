@@ -27,6 +27,17 @@ describe("/GET anagram", () => {
         });
     }
 
+    it("it should return an anagram", done => {
+        const word = "bewildered";
+        chai.request(server)
+            .get(`/anagram?word=${word}`)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.anagrams.should.be.eql(["drew", "lid", "be", "e"]);
+                done();
+            });
+    });
+
     it("it should return a not found message", done => {
         chai.request(server)
             .get("/anagram?word=asdf")
