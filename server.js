@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
 app.listen(process.env.PORT || 8000);
 
 app.get("/anagram", (req, res) => {
-    res.send(anagram(req.query.word));
+    res.send(anagram(req.query.word.toLowerCase()));
 });
 
 function readFile() {
