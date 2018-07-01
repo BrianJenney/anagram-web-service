@@ -61,12 +61,15 @@ function anagram(word) {
     }
 
     solutions = [];
+
     const multiAnagram = longestAnagram(anagrams, sortedWord, 1000);
 
     if (multiAnagram.length) {
         anagrams = multiAnagram.reduce(function(a, b) {
             return a.length > b.length ? a : b;
         });
+    } else {
+        anagrams = [];
     }
 
     return anagrams.length || twoWords.length
