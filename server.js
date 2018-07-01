@@ -61,8 +61,8 @@ function anagram(word) {
     }
 
     return anagrams.length || twoWords.length
-        ? { anagrams, twoWords }
-        : { message: "Sorry Charlie" };
+        ? { anagrams, twoWords, success: true }
+        : { anagrams, twoWords, success: false };
 }
 
 function containsWord(word, sub) {

@@ -32,7 +32,11 @@ describe("/GET anagram", () => {
             .get("/anagram?word=asdf")
             .end((err, res) => {
                 res.should.have.status(200);
-                res.body.should.be.eql({ message: "Sorry Charlie" });
+                res.body.should.be.eql({
+                    anagrams: [],
+                    success: false,
+                    twoWords: []
+                });
                 done();
             });
     });
