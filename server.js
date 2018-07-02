@@ -60,8 +60,10 @@ function anagram(word) {
         }
     }
 
-    solutions = [];
+    solutions = []; //empty the previous solutions
 
+    //returns multiple possibilites for anagrams
+    //set the number of iterations to 1000 arbitrarily as not to end in a forever loop if no solutions can be found
     const multiAnagram = longestAnagram(anagrams, sortedWord, 1000);
 
     if (multiAnagram.length) {
@@ -77,6 +79,7 @@ function anagram(word) {
         : { anagrams, twoWords, success: false };
 }
 
+//checks if function contains word and returns the remaining word if any
 function containsWord(word, sub) {
     let curWord = word.split("");
     let compareWord = sub.split("");
@@ -117,7 +120,7 @@ function wordSorter(word) {
         .join("");
 }
 
-let solutions = [];
+let solutions = []; //store possible multi-word solutions to the anagram
 
 function longestAnagram(words, target, iterations, partial) {
     let s, n, remaining;
@@ -158,4 +161,4 @@ function longestAnagram(words, target, iterations, partial) {
     return solutions;
 }
 
-module.exports = app;
+module.exports = app; //export for testing

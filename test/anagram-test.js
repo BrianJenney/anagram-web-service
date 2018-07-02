@@ -27,7 +27,7 @@ describe("/GET anagram", () => {
         });
     }
 
-    it("it should return an anagram", done => {
+    it("it should return longest anagram", done => {
         const word = "bewildered";
         chai.request(server)
             .get(`/anagram?word=${word}`)
@@ -38,7 +38,7 @@ describe("/GET anagram", () => {
             });
     });
 
-    it("it should return a not found message", done => {
+    it("it should return a fales success property", done => {
         chai.request(server)
             .get("/anagram?word=asdf")
             .end((err, res) => {
